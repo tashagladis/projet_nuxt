@@ -1,0 +1,37 @@
+{
+  "name": "ynov-eshop",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxt/http": "^0.6.4",
+    "@nuxtjs/apollo": "^4.0.1-rc.5",
+    "@sendgrid/mail": "^7.4.2",
+    "body-parser": "^1.19.0",
+    "core-js": "^3.6.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "graphql-tag": "^2.11.0",
+    "nodemon": "^2.0.7",
+    "nuxt": "^2.14.6",
+    "stripe": "^8.142.0",
+    "vue-jwt-decode": "^0.1.0",
+    "vue-slick": "^1.1.16",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^3.1.0",
+    "@vue/test-utils": "^1.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.5.0",
+    "jest": "^26.5.0",
+    "vue-jest": "^3.0.4"
+  }
+}
