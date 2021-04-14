@@ -1,6 +1,9 @@
 <template>
-  <div class="categiers ">
-    <div v-for="category in categories" :key="category.id" :categoryObject="category">
+  <div class="categories">
+      <div class="loader text-center" v-if="loading == 0">
+        ...loading
+      </div>
+    <div v-for="category in categories" :key="category.id" >
     <TitleBloc :titleText="category.title" />
     <ProductGrid :productsArray="category.products"/>
     
@@ -23,18 +26,21 @@
         data: function(){
             return{
                 isLogged: false,
-                categories: Array
+                categories: Array,
+                loading:0,
 
             }
         },
-        //middleware: "auth",
+        middleware: "auth",
         methods:{
         },
         beforeMount(){
+           
             this.$getCategories()
             .then(data => {
                 console.log(data)
                 this.categories = data
+                this.loading = 1
                 })
             .catch(err => console.log(err))
             

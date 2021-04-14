@@ -39,7 +39,7 @@ export default {
     "@nuxt/http"
   ],
 
-  serverMiddleware:['~/api/send-email.js'],
+  serverMiddleware:['~/api/send-email.js', '~/api/send-email-order.js'],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

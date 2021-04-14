@@ -1,7 +1,7 @@
 <template>
     <div>
         <TitlePage titleText="Eshop" />
-        <div class="loader" v-if="loading">
+        <div class="loader text-center" v-if="loading">
         ...loading
         </div>
         <!-- <div class="post__grid text-center" v-for="product in productsArray" :key="product.id">
@@ -37,6 +37,7 @@
                 search:""
             }
         },
+         middleware:"auth",
        apollo: {
            $loadingKey: "loading",
            productsArray:{

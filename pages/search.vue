@@ -2,6 +2,9 @@
 <div>
       <form class="form__login w-1/3 mx-auto">
         <TitlePage titleText="Search" />
+        <div class="loader text-center" v-if="loading == 0">
+        ...loading
+        </div>
         <div class="form__group">
             <input class="border-2 rounded-sm my-1 h-10 w-full" type="text" v-model="search" :name="search"/>
         </div>
@@ -42,6 +45,7 @@
                 searchEl:""
             }
         },
+         middleware:"auth",
        apollo: {
            $loadingKey: "loading",
       
@@ -55,6 +59,7 @@
                //update Equivalent du .then
                update(data){
                    console.log(data)
+                   this.loading = 1
                    return data.feed
                }
 

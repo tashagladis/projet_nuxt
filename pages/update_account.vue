@@ -76,7 +76,7 @@ export default {
 
     };
   },
- 
+  middleware:"auth",
   methods: {
     sendSub: function() {
         const token = localStorage.getItem('token')

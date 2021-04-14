@@ -59,7 +59,7 @@ export default {
       email: ""
     };
   },
- 
+  middleware:"auth",
   methods: {
     sendMail: function() {
          const body = {

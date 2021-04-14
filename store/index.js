@@ -1,26 +1,25 @@
 
 
 
+
 export const state = () => ({
-    auth: false,
+    
     cart:  [],
     cartFav:  [],
     
-
+    auth: false,
     //cart ? JSON.parse(cart) :
     myVar:"test"
-
+   
 })
 
 export const mutations = {
     isAuth(state) {
         state.auth = true;
     },
-
     loggedOut(state) {
         state.auth = false
     },
-
     saveCart(state) {
         localStorage.setItem('shopCart', JSON.stringify(state.cart))
     },

@@ -31,7 +31,7 @@ import VueJwtDecode from "vue-jwt-decode"
 
             }
         },
-        //middleware: "auth",
+        middleware: "auth",
         methods:{
             logout: function(){
                 localStorage.removeItem('token');

@@ -4,11 +4,14 @@
     <p>Vous n'etes pas connecter</p>
 
   </div>
- 
-    <div class="container px-4 sm:px-8"  v-else>
-    <div class="py-8">
+   <div class="loader text-center" v-if="loading == 0">
+        ...loading
+  </div>
+
+  <div class="container "  v-if="isLogged == true" >
+    <div class="cont">
         <div>
-            <h2 class="text-2xl font-semibold leading-tight">Historiques des commandes</h2>
+            <h2 class="text-2xl font-semibold leading-tight">Order history</h2>
         </div>
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -26,6 +29,10 @@
                             <th
                                 class="px-15 py-15 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                Total 
+                            </th>
+                            <th
+                                class="px-15 py-15 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                               Products
                             </th>
                                <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -53,8 +60,16 @@
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap text-center">
-                                    {{order.totalAmount}}
+                                    {{order.totalAmount}} €
                                 </p>
+                            </td>
+                            
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                              <div v-for="product in order.products" :key="product.id" :productObject="product">
+                                <p class="text-gray-900 whitespace-no-wrap text-center">
+                                    - {{product.title}}
+                                </p>
+                              </div>
                             </td>
                              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap text-center">
@@ -86,34 +101,31 @@
 
 <script>
 
-    import TitlePage from "../components/ui/TitlePage"
-    import TitleBloc from "../components/ui/TitleBloc"
-    import ProductGrid from "../components/ProductGrid"
+   
 
     export default {
-        components:{
-            TitlePage,
-            TitleBloc,
-            ProductGrid
-        },
+      
         data: function(){
             return{
                 isLogged: false,
                 orders: Array,
-                result: []
+                result: [],
+                loading: 0
 
 
             }
         },
-        //middleware: "auth",
+        middleware: "auth",
         methods:{
+
         },
         beforeMount(){
             this.$getOrders()
             .then(data => {
                 console.log(data)
+               
                 this.orders = data
-
+                  this.loading = 1
             const token = localStorage.getItem('token')
 
             if(token){
@@ -121,8 +133,10 @@
             const jwtDecode = this.$decodeJwt(token);
 
                 this.result =  (this.orders).filter(function (item){
+                
                       return item.user._id === jwtDecode.id;
                   });
+              
               
              }
 

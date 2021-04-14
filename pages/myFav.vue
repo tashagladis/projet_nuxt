@@ -1,5 +1,8 @@
 <template>
     <div>
+         <div class="loader text-center" v-if="loading">
+        ...loading
+       </div>
       <TitlePage titleText="Ma liste"/>
       <ProductGrid :productsArray="cardArray"/>
     </div>
@@ -17,6 +20,7 @@ import ProductGrid from "../components/ProductGrid";
             Button,
             ProductGrid
         },
+         middleware:"auth",
         data: function () {
             return {
                 cardArray:[],

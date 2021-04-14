@@ -18,6 +18,7 @@
             ]
 
         },
+         middleware:"auth",
         components: {
           TitlePage  
         }

@@ -57,9 +57,9 @@
             else
             {
                 let token = data.token;
-                localStorage.setItem('token', token)
-               // this.$store.commit('')
-                    this.$router.push('account');
+                localStorage.setItem('token',token);
+                this.$store.commit('isAuth');
+                this.$router.push('account');
                 }
 
                 }
