@@ -65,7 +65,7 @@ export default {
      messageError:""
     };
   },
-  middleware:"auth",
+
   methods: {
     sendSub: function() {
          const body = {
